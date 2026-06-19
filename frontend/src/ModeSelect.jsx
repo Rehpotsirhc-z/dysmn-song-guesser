@@ -15,7 +15,7 @@ export default function ModeSelect({ onSelect, clipDuration, onDurationChange })
               className={`duration-btn${clipDuration === d ? ' active' : ''}`}
               onClick={() => onDurationChange(d)}
             >
-              {d}s
+              {d} s
             </button>
           ))}
         </div>

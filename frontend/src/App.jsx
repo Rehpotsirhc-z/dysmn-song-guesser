@@ -29,7 +29,10 @@ function initGame(songs, clipDuration) {
 export default function App() {
   const [songs, setSongs] = useState(null)
   const [mode, setMode] = useState(null)
-  const [clipDuration, setClipDuration] = useState(1)
+  const [clipDuration, setClipDuration] = useState(() => {
+    const saved = localStorage.getItem('clipDuration')
+    return saved ? Number(saved) : 1
+  })
   const [error, setError] = useState(null)
   const game = useRef(null)
 
@@ -59,7 +62,7 @@ export default function App() {
     <ModeSelect
       onSelect={setMode}
       clipDuration={clipDuration}
-      onDurationChange={setClipDuration}
+      onDurationChange={d => { setClipDuration(d); localStorage.setItem('clipDuration', d) }}
     />
   )
   return (
