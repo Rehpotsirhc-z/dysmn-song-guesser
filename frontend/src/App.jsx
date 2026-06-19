@@ -58,7 +58,6 @@ export default function App() {
   if (!mode) return (
     <ModeSelect
       onSelect={setMode}
-      songCount={songs.length}
       clipDuration={clipDuration}
       onDurationChange={setClipDuration}
     />

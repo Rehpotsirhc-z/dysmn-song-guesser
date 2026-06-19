@@ -1,10 +1,10 @@
 const DURATIONS = [0.25, 0.5, 1, 2]
 
-export default function ModeSelect({ onSelect, songCount, clipDuration, onDurationChange }) {
+export default function ModeSelect({ onSelect, clipDuration, onDurationChange }) {
   return (
     <div className="mode-select">
+      <img className="logo" src="/Dysmn.png" alt="Dysmn" />
       <h1>Dysmn Song Guesser</h1>
-      <p className="subtitle">{songCount} songs — can you name them?</p>
 
       <div className="duration-select">
         <span className="duration-label">Clip length</span>

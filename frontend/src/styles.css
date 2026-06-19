@@ -32,8 +32,13 @@ button:active { background: #222; }
   text-align: center;
   padding-top: 5rem;
 }
-.mode-select h1 { font-size: 2rem; margin-bottom: 0.5rem; }
-.mode-select .subtitle { color: #888; margin-bottom: 3rem; }
+.mode-select .logo {
+  display: block;
+  max-width: min(90%, 420px);
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
+.mode-select h1 { font-size: 2rem; margin-bottom: 3rem; }
 
 .duration-select {
   display: flex;
