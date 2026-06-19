@@ -1,0 +1,25 @@
+volumes:
+  # Persisted /usr/local — keeps anything installed there (e.g. npm globals,
+  # /usr/local/bin tools) across container rebuilds.
+  devtools:
+  # Persisted /home/ubuntu — shell config, zellij install, etc.
+  home:
+
+services:
+  dev:
+    container_name: dysmn-song-guesser
+    restart: unless-stopped
+    working_dir: /workspace
+
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+
+    ports:
+      - "2280:80"
+
+    volumes:
+      - .:/workspace
+      - devtools:/usr/local
+      - home:/home/ubuntu
+      - ./.docker/nginx-sites:/etc/nginx/sites-enabled

@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+*.egg-info/
+
+# Node
+node_modules/
+dist/
+.vite/
+
+# Editor
+.vscode/
+.idea/
+
+# Env / secrets
+.env
+.env.local
+
+# Pre-generated static assets (binary, large — run tools/pregenerate.py to rebuild)
+backend/static/clips/
+backend/static/art/
