@@ -1,5 +1,25 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 
+const ChevronLeft = () => (
+  <svg width="0.75em" height="0.75em" viewBox="0 0 10 10" fill="none"
+       stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M7 1L3 5l4 4"/>
+  </svg>
+)
+
+const ChevronRight = () => (
+  <svg width="0.75em" height="0.75em" viewBox="0 0 10 10" fill="none"
+       stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 1l4 4-4 4"/>
+  </svg>
+)
+
+const PlayIcon = () => (
+  <svg width="0.75em" height="0.75em" viewBox="0 0 10 10" fill="currentColor">
+    <polygon points="2,1 9,5 2,9"/>
+  </svg>
+)
+
 const PRELOAD_AHEAD = 3
 
 function shuffle(arr) {
@@ -85,14 +105,14 @@ export default function Game({ queue, audioCache, songs, mode, clipDuration, onB
   return (
     <div>
       <div className="game-header">
-        <button onClick={onBack}>← Back</button>
+        <button onClick={onBack}><ChevronLeft /> Back</button>
         <span className="progress">{index + 1} / {queue.length}</span>
         {mode === 'list' && (
           <span className="score">{correct} / {phase === 'revealed' ? index + 1 : index}</span>
         )}
       </div>
 
-      <button className="play-btn" onClick={playClip}>▶ Play clip</button>
+      <button className="play-btn" onClick={playClip}><PlayIcon /> Play clip</button>
 
       {phase === 'answering' && (
         mode === 'type' ? (
@@ -143,7 +163,7 @@ export default function Game({ queue, audioCache, songs, mode, clipDuration, onB
             )}
 
             <button className="next-btn" onClick={handleNext}>
-              {isLast ? 'Finish' : 'Next →'}
+              {isLast ? 'Finish' : <>Next <ChevronRight /></>}
             </button>
           </div>
         </>
