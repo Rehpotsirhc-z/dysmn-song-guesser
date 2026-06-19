@@ -63,10 +63,11 @@ button:active { background: #222; }
 .modes button {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.4rem;
   padding: 1.25rem 1.75rem;
-  min-width: 190px;
+  flex: 1;
+  white-space: nowrap;
   border-color: #555;
 }
 .modes button strong { font-size: 1.15rem; }
