@@ -396,6 +396,36 @@
     "has_art": true
   },
   {
+    "id": "567b1b9c4e92",
+    "title": "I Am Sorry, I Love You",
+    "album": "DEATH EFFECT",
+    "has_art": true
+  },
+  {
+    "id": "040dbce1d092",
+    "title": "Just Kill Me Already",
+    "album": "DEATH EFFECT",
+    "has_art": true
+  },
+  {
+    "id": "cdc1188f852e",
+    "title": "Don't Hug Me, I'm Scared",
+    "album": "DEATH EFFECT",
+    "has_art": true
+  },
+  {
+    "id": "d3910b03de2d",
+    "title": "Sometimes I worry that nothing is ever enough",
+    "album": "DEATH EFFECT",
+    "has_art": true
+  },
+  {
+    "id": "75c6e8c149f5",
+    "title": "DEVIL EFFECT",
+    "album": "DEVIL EFFECT",
+    "has_art": true
+  },
+  {
     "id": "26b06ff99abc",
     "title": "Dacryphilia",
     "album": "Dacryphilia",
@@ -405,6 +435,12 @@
     "id": "e954a47099c4",
     "title": "Damn The Rest Of The World",
     "album": "Damn The Rest Of The World",
+    "has_art": true
+  },
+  {
+    "id": "450e5438e1cb",
+    "title": "Dear Nightmare, My Love",
+    "album": "Dear Nightmare, My Love",
     "has_art": true
   },
   {
@@ -579,6 +615,54 @@
     "id": "a98ba9b1417a",
     "title": "GOODBYE WORLD! I WILL MISS NONE OF YOU!",
     "album": "Death Isn't Enough//Judgement",
+    "has_art": true
+  },
+  {
+    "id": "a56e8241b9e4",
+    "title": "Mercury",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "7e5c93dbb7ce",
+    "title": "Hentai For The End Times",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "08e99d3552cb",
+    "title": "Nightmares 2.0",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "7bc88d3dabbc",
+    "title": "Revere The Dead",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "f51250fe834f",
+    "title": "No More Heroes",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "23427dea296a",
+    "title": "Cancer",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "b36066c801d7",
+    "title": "Necrophilia",
+    "album": "Death Isn't Enough//Necrophilia",
+    "has_art": true
+  },
+  {
+    "id": "2c7cfd631877",
+    "title": "Boner",
+    "album": "Death Isn't Enough//Necrophilia",
     "has_art": true
   },
   {
@@ -996,6 +1080,12 @@
     "has_art": true
   },
   {
+    "id": "c4fd44fbb752",
+    "title": "Just Promise Me One Thing... Destroy It All",
+    "album": "Just Promise Me One Thing... Destroy It All",
+    "has_art": true
+  },
+  {
     "id": "9d79b581f223",
     "title": "Katharsis",
     "album": "Katharsis",
@@ -1080,12 +1170,6 @@
     "has_art": true
   },
   {
-    "id": "8883bfcc65f2",
-    "title": "Mercury",
-    "album": "Mercury",
-    "has_art": true
-  },
-  {
     "id": "3eb60e679a2a",
     "title": "Monolith I",
     "album": "Monolith I",
@@ -1158,21 +1242,15 @@
     "has_art": true
   },
   {
-    "id": "18f32f0155a7",
-    "title": "Hentai For The End Times",
-    "album": "Necrophilia",
+    "id": "1bb80834817c",
+    "title": "No More Heroes",
+    "album": "No More Heroes",
     "has_art": true
   },
   {
-    "id": "0a327dfc8bd5",
-    "title": "Revere The Dead",
-    "album": "Necrophilia",
-    "has_art": true
-  },
-  {
-    "id": "400f1f111c61",
-    "title": "Necrophilia",
-    "album": "Necrophilia",
+    "id": "045f6b981ced",
+    "title": "No More Heroes - Vocals Version",
+    "album": "No More Heroes",
     "has_art": true
   },
   {

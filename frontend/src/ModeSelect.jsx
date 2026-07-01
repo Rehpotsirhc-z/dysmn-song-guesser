@@ -1,6 +1,7 @@
 const DURATIONS = [0.25, 0.5, 1, 2]
+const LIMITS = [10, 25, 50, 100, 200, null]
 
-export default function ModeSelect({ onSelect, clipDuration, onDurationChange }) {
+export default function ModeSelect({ onSelect, clipDuration, onDurationChange, limit, onLimitChange }) {
   return (
     <div className="mode-select">
       <img className="logo" src="/Dysmn.png" alt="Dysmn" />
@@ -16,6 +17,21 @@ export default function ModeSelect({ onSelect, clipDuration, onDurationChange })
               onClick={() => onDurationChange(d)}
             >
               {d} s
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <div className="duration-select">
+        <span className="duration-label">Songs</span>
+        <div className="duration-options">
+          {LIMITS.map(l => (
+            <button
+              key={l ?? 'all'}
+              className={`duration-btn${limit === l ? ' active' : ''}`}
+              onClick={() => onLimitChange(l)}
+            >
+              {l ?? 'All'}
             </button>
           ))}
         </div>

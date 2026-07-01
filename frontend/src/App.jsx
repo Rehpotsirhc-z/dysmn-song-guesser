@@ -19,8 +19,8 @@ function makeAudio(id, duration) {
   return a
 }
 
-function initGame(songs, clipDuration) {
-  const queue = shuffle(songs)
+function initGame(songs, clipDuration, limit) {
+  const queue = shuffle(songs).slice(0, limit ?? songs.length)
   const audioCache = new Map()
   queue.slice(0, PRELOAD_AHEAD + 1).forEach(s => audioCache.set(s.id, makeAudio(s.id, clipDuration)))
   return { queue, audioCache }
@@ -32,6 +32,10 @@ export default function App() {
   const [clipDuration, setClipDuration] = useState(() => {
     const saved = localStorage.getItem('clipDuration')
     return saved ? Number(saved) : 1
+  })
+  const [limit, setLimit] = useState(() => {
+    const saved = localStorage.getItem('limit')
+    return saved ? Number(saved) : null
   })
   const [error, setError] = useState(null)
   const game = useRef(null)
@@ -46,14 +50,20 @@ export default function App() {
       .catch(e => setError(e.message))
   }, [])
 
-  // Re-shuffle and preload whenever songs load or duration changes (only outside a game)
+  // Re-shuffle and preload whenever songs load, duration, or limit changes (only outside a game)
   useEffect(() => {
     if (!songs || mode) return
-    game.current = initGame(songs, clipDuration)
-  }, [songs, clipDuration, mode])
+    game.current = initGame(songs, clipDuration, limit)
+  }, [songs, clipDuration, limit, mode])
 
   const handleBack = () => {
-    setMode(null) // mode→null triggers the effect above to reshuffle + preload
+    setMode(null)
+  }
+
+  const handleLimitChange = (l) => {
+    setLimit(l)
+    if (l === null) localStorage.removeItem('limit')
+    else localStorage.setItem('limit', l)
   }
 
   if (error) return <div className="error">Failed to load songs: {error}</div>
@@ -63,6 +73,8 @@ export default function App() {
       onSelect={setMode}
       clipDuration={clipDuration}
       onDurationChange={d => { setClipDuration(d); localStorage.setItem('clipDuration', d) }}
+      limit={limit}
+      onLimitChange={handleLimitChange}
     />
   )
   return (

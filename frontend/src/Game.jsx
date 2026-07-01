@@ -44,11 +44,12 @@ function makeAudio(id, duration) {
 
 export default function Game({ queue, audioCache, songs, mode, clipDuration, onBack }) {
   const [index, setIndex] = useState(0)
-  const [phase, setPhase] = useState('answering')
+  const [phase, setPhase] = useState('answering') // 'answering' | 'revealed' | 'summary'
   const [answer, setAnswer] = useState('')
   const [choices, setChoices] = useState([])
   const [selected, setSelected] = useState(null)
   const [correct, setCorrect] = useState(0)
+  const [results, setResults] = useState([]) // [{song, correct}]
   const currentAudio = useRef(null)
 
   const current = queue[index]
@@ -81,18 +82,26 @@ export default function Game({ queue, audioCache, songs, mode, clipDuration, onB
 
   const reveal = () => setPhase('revealed')
 
-  const handleListChoice = (choice) => {
-    setSelected(choice.id)
-    if (choice.id === current.id) setCorrect(n => n + 1)
-    reveal()
-  }
-
-  const handleNext = () => {
+  const advanceOrFinish = () => {
     if (isLast) {
-      onBack()
+      setPhase('summary')
     } else {
       setIndex(i => i + 1)
     }
+  }
+
+  const handleListChoice = (choice) => {
+    setSelected(choice.id)
+    const wasCorrect = choice.id === current.id
+    if (wasCorrect) setCorrect(n => n + 1)
+    setResults(r => [...r, { song: current, correct: wasCorrect }])
+    reveal()
+  }
+
+  const handleSelfScore = (wasCorrect) => {
+    if (wasCorrect) setCorrect(n => n + 1)
+    setResults(r => [...r, { song: current, correct: wasCorrect }])
+    advanceOrFinish()
   }
 
   const choiceClass = (choice) => {
@@ -102,14 +111,45 @@ export default function Game({ queue, audioCache, songs, mode, clipDuration, onB
     return 'dimmed'
   }
 
+  if (phase === 'summary') {
+    const total = results.length
+    const numCorrect = results.filter(r => r.correct).length
+    const pct = total > 0 ? Math.round(numCorrect / total * 100) : 0
+    return (
+      <div className="summary">
+        <div className="summary-score">
+          <span className="summary-fraction">{numCorrect} / {total} ({clipDuration} s)</span>
+          <span className="summary-pct">{pct}%</span>
+        </div>
+        <div className="summary-list">
+          {results.map((r, i) => (
+            <div key={i} className={`summary-item ${r.correct ? 'correct' : 'wrong'}`}>
+              <span className="summary-verdict">{r.correct ? '✓' : '✗'}</span>
+              {r.song.has_art
+                ? <img src={`/api/songs/${r.song.id}/art`} alt="" />
+                : <div className="summary-no-art">♪</div>
+              }
+              <div className="summary-info">
+                <strong>{r.song.title}</strong>
+                <span>{r.song.album}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+        <button className="summary-back" onClick={onBack}>Back to Menu</button>
+      </div>
+    )
+  }
+
   return (
     <div>
       <div className="game-header">
         <button onClick={onBack}><ChevronLeft /> Back</button>
         <span className="progress">{index + 1} / {queue.length}</span>
-        {mode === 'list' && (
-          <span className="score">{correct} / {phase === 'revealed' ? index + 1 : index}</span>
-        )}
+        {results.length > 0
+          ? <span className="score">{correct} / {results.length}</span>
+          : <span />
+        }
       </div>
 
       <button className="play-btn" onClick={playClip}><PlayIcon /> Play clip</button>
@@ -162,9 +202,19 @@ export default function Game({ queue, audioCache, songs, mode, clipDuration, onB
               </p>
             )}
 
-            <button className="next-btn" onClick={handleNext}>
-              {isLast ? 'Finish' : <>Next <ChevronRight /></>}
-            </button>
+            {mode === 'list' ? (
+              <button className="next-btn" onClick={advanceOrFinish}>
+                {isLast ? 'See Results' : <>Next <ChevronRight /></>}
+              </button>
+            ) : (
+              <>
+                {answer && <p className="your-guess">You said: "{answer}"</p>}
+                <div className="self-score">
+                  <button className="got-it" onClick={() => handleSelfScore(true)}>✓ Got it</button>
+                  <button className="missed" onClick={() => handleSelfScore(false)}>✗ Missed it</button>
+                </div>
+              </>
+            )}
           </div>
         </>
       )}

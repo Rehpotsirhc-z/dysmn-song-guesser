@@ -29,7 +29,7 @@ def get_clip(sid: str, duration: str):
     clip = STATIC / "clips" / f"{sid}_{duration}.mp3"
     if not clip.exists():
         raise HTTPException(status_code=404, detail="Clip not found")
-    return FileResponse(str(clip), media_type="audio/mpeg")
+    return FileResponse(str(clip), media_type="audio/mpeg", headers={"Cache-Control": "no-cache"})
 
 
 @app.get("/api/songs/{sid}/art")
